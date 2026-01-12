@@ -25,19 +25,19 @@ class InspectorCommand extends Command
         $handle = $this->argument('handle');
 
         if (! is_string($handle)) {
-            $this->components->error('Please pass a valid MCP server handle');
+            $this->error('Please pass a valid MCP server handle');
 
             return static::FAILURE;
         }
 
-        $this->components->info("Starting the MCP Inspector for server [{$handle}]");
+        $this->info("Starting the MCP Inspector for server [{$handle}]");
 
         $localServer = $registrar->getLocalServer($handle);
         $route = $registrar->getWebServer($handle);
 
         $servers = $registrar->servers();
         if ($servers === []) {
-            $this->components->error('No MCP servers found. Please run `php artisan make:mcp-server [name]`');
+            $this->error('No MCP servers found. Please run `php artisan make:mcp-server [name]`');
 
             return static::FAILURE;
         }
@@ -54,7 +54,7 @@ class InspectorCommand extends Command
 
         if (is_null($localServer) && is_null($route)) {
             $availableServers = Arr::map(array_keys($servers), fn ($server): string => "[{$server}]");
-            $this->components->error('MCP Server with name ['.$handle.'] not found. Available servers: '.Arr::join($availableServers, ', '));
+            $this->error('MCP Server with name ['.$handle.'] not found. Available servers: '.Arr::join($availableServers, ', '));
 
             return static::FAILURE;
         }
@@ -119,7 +119,7 @@ class InspectorCommand extends Command
                 echo $buffer;
             });
         } catch (Exception $exception) {
-            $this->components->error('Failed to start MCP Inspector: '.$exception->getMessage());
+            $this->error('Failed to start MCP Inspector: '.$exception->getMessage());
 
             return static::FAILURE;
         }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Laravel\Mcp\Server;
 
 use Laravel\Mcp\Server\Prompts\Argument;
-use Laravel\Mcp\Server\Prompts\Arguments;
 
 abstract class Prompt extends Primitive
 {
