@@ -1,5 +1,5 @@
 {
-    "name": "laravel/mcp",
+    "name": "mevisoft/laravel-mcp",
     "description": "Rapidly build MCP servers for your Laravel applications.",
     "keywords": [
         "mcp",
